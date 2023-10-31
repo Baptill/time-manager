@@ -33,6 +33,8 @@ jobs:
         path: deps
         key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
         restore-keys: ${{ runner.os }}-mix-
+    - name: starting postgres 
+      run: sudo service postgresql start
     - name: Install dependencies
       run: cd time_manager && mix deps.get
     - name: Run tests
