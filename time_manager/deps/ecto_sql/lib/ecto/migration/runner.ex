@@ -10,7 +10,7 @@ defmodule Ecto.Migration.Runner do
   alias Ecto.Migration.Command
 
 
-  config :phoenix, :ecto, database: [username: "postgres", password: "postgres"]
+  #config :phoenix, :ecto, database: [username: "postgres", password: "postgres"]
 
   @doc """
   Runs the given migration.
