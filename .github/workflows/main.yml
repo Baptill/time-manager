@@ -29,7 +29,8 @@ jobs:
     - name: Set up Elixir
       uses: actions/setup-elixir@v1
       with:
-        elixir-version: '1.14' # Spécifiez votre version d'Elixir
+        elixir-version: '1.14'
+        otp-version: '24'
 
     - name: Cache dependencies
       uses: actions/cache@v2
