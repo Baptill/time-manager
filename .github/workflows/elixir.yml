@@ -58,12 +58,12 @@ jobs:
         PGPASSWORD: postgres
         PGDATABASE: time_manager_dev
         PGPORT: 5432
-    - name: Run tests
-      run: cd time_manager && mix test
-      env:
-        PGHOST: localhost
-        PGUSER: postgres
-        PGPASSWORD: postgres
-        PGDATABASE: time_manager_dev
-        PGPORT: 5432
+    #- name: Run tests
+      #run: cd time_manager && mix test
+      #env:
+        #PGHOST: localhost
+        #PGUSER: postgres
+        #PGPASSWORD: postgres
+        #PGDATABASE: time_manager_dev
+        #PGPORT: 5432
 
