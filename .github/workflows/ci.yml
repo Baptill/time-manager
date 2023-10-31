@@ -22,6 +22,9 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
+
+    - name: Install dependencies
+      uses: sudo apt-get update && sudo apt-get install -y libncurses5 libtinfo5
       
     - name: Set up Elixir
       uses: actions/setup-elixir@v1
