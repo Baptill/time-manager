@@ -23,6 +23,10 @@ services:
       POSTGRES_USER: ${PGUSER}
       POSTGRES_PASSWORD: ${PGPASSWORD}
       POSTGRES_DB: ${PGDATABASE}
+     on_start:
+     - exec:
+       command: |  
+       psql -U postgres -c "CREATE USER postgres WITH SUPERUSER CREATEDB CREATEROLE LOGIN ENCRYPTED PASSWORD 'postgres';"
   front:
     build:
       context: ./time_manager_app
