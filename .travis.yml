@@ -1,0 +1,26 @@
+language: generic
+
+services:
+  - docker
+
+before_install:
+  - echo ${ENCODED_SSH_KEY:0:50}   # prints the first 50 characters
+  - echo $ENCODED_SSH_KEY | base64 --decode > TimeManagerKeys.pem
+  - chmod 600 TimeManagerKey.pem
+  - echo $(head -c 50 TimeManagerKeys.pem)
+  - docker-compose build
+
+
+script:
+  - docker-compose up -d
+
+after_success:
+  - echo "$DOCKER_ACCESS_TOKEN" | docker login -u Baptill --password-stdin
+  - docker-compose push back
+  - docker-compose push front
+
+jobs:
+  include:
+    - stage: Deploy
+      script:
+        - ssh -o StrictHostKeyChecking=no -i TimeManagerKey.pem ec2-user@13.48.29.219 "git pull && docker-compose pull && docker-compose up -d"

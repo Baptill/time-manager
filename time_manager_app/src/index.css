@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Font ---------------------- */
+
+h1 {
+  font-size: 45px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+
+/* Tag -----------------------*/
+
+input {
+  width: 200px;
+  height: 30px;
+  padding: 5px;
+  border-radius: 2px;
+  border: solid rgba(200, 200, 200, 0.9) ;
+  margin: 3px;
+
+}
+
+button {
+  color: white;
+  font-weight: 700;
+  background-color: rgb(65,184,131);
+  height: 30px;
+  border-radius: 3px;
+  width: 200px;
+  
+}

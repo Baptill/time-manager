@@ -1,0 +1,34 @@
+version: '3'
+services:
+  back:
+    build:
+      context: ./time_manager
+      dockerfile: Dockerfile
+    container_name: back-time-manager
+    env_file:
+    - ./.env
+    ports:
+      - "4000:4000"
+    depends_on:
+      - db
+    command: /app/entrypoint.sh
+    volumes:
+      - ./time_manager:/app
+  db:
+    image: postgres:latest
+    container_name: db-time-manager
+    ports:
+    - "5432:5432"
+    environment:
+      POSTGRES_USER: ${PGUSER}
+      POSTGRES_PASSWORD: ${PGPASSWORD}
+      POSTGRES_DB: ${PGDATABASE}
+  front:
+    build:
+      context: ./time_manager_app
+    container_name: front-time-manager
+    ports:
+      - "8080:8080"
+
+# TODO: Gestion des authetifications
+# Creation des user en db
