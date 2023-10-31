@@ -29,5 +29,9 @@ jobs:
     - name: Change working directory
       run: cd time_manager_app
     - run: npm install
+    - name: Change working directory
+      run: cd time_manager_app
     - run: npm run build --if-present
+    - name: Change working directory
+      run: cd time_manager_app
     - run: npm test
