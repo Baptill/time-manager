@@ -24,7 +24,9 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Install dependencies
-      run: sudo apt-get update && sudo apt-get install -y libncurses5 libtinfo5
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libncurses5 libtinfo5 openssl libssl-devbtinfo5
       
     - name: Set up Elixir
       uses: actions/setup-elixir@v1
