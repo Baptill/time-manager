@@ -35,7 +35,5 @@ jobs:
         restore-keys: ${{ runner.os }}-mix-
     - name: Install dependencies
       run: mix deps.get
-      working-directory: ./time-manager/time_manager
     - name: Run tests
       run: mix test
-      working-directory: ./time-manager/time_manager
