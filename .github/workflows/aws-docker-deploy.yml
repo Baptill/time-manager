@@ -25,11 +25,10 @@ jobs:
         cd time_manager
         docker build -t webdesignpastor/time_manager_back:latest .
         docker push webdesignpastor/time_manager_back:latest
-
         echo "Building and pushing frontend image..."
         cd ../time_manager_app
-        docker build -t webdesignpastor/time_manager_front:latest .
-        docker push webdesignpastor/time_manager_front:latest
+        docker build -t Baptill/time_manager_app:latest .
+        docker push Baptill/time_manager:latest
 
     - name: Deploy to EC2
       env:
@@ -48,13 +47,13 @@ jobs:
         ssh -tt -o StrictHostKeyChecking=no -o ServerAliveInterval=60 -i private_key.pem $USER@$HOST <<-EOF
           # Pull the latest images
           echo "Pulling Docker images..."
-          docker pull webdesignpastor/time_manager_back:latest
-          docker pull webdesignpastor/time_manager_front:latest
+          docker pull Baptill/time_manager:latest
+          docker pull Baptill/time_manager_app:latest
 
           # Clone repo
           echo "Downloading and extracting code..."
-          curl -L https://github.com/WebDesignPastor/time_manager_all/archive/refs/heads/master.tar.gz | tar -xz
-          cd time_manager_all-master
+          curl -L https://github.com/Baptill/time-manager/archive/refs/heads/master.tar.gz | tar -xz
+          cd time-manager-master
 
           # Set environment variables
           echo "Setting environment variables..."
