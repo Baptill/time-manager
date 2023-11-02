@@ -18,7 +18,7 @@ jobs:
       db:
         image: postgres:13
         env:
-          POSTGRES_DB: time_manager_dev
+          POSTGRES_DB: ${{ secrets.POSTGRES_DATABASE }}
           POSTGRES_USER: ${{ secrets.POSTGRES_USERNAME }}
           POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
         ports:
@@ -46,17 +46,17 @@ jobs:
       run: cd time_manager && mix deps.get
       env:
         PGHOST: localhost
-        PGUSER: postgres
-        PGPASSWORD: postgres
-        PGDATABASE: time_manager_dev
+        POSTGRES_USER: ${{ secrets.POSTGRES_USERNAME }}
+        POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+        POSTGRES_DB: ${{ secrets.POSTGRES_DATABASE }}
         PGPORT: 5432
     - name: Setup DB
       run: cd time_manager && mix ecto.setup
       env:
         PGHOST: localhost
-        PGUSER: postgres
-        PGPASSWORD: postgres
-        PGDATABASE: time_manager_dev
+        POSTGRES_USER: ${{ secrets.POSTGRES_USERNAME }}
+        POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+        POSTGRES_DB: ${{ secrets.POSTGRES_DATABASE }}
         PGPORT: 5432
     #- name: Run tests
       #run: cd time_manager && mix test
