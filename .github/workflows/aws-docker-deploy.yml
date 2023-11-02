@@ -23,12 +23,13 @@ jobs:
       run: |
         echo "Building and pushing backend image..."
         cd time_manager
-        docker build -t webdesignpastor/time_manager_back:latest .
-        docker push webdesignpastor/time_manager_back:latest
+        docker build -t baptill/time_manager_back:latest .
+        docker push baptill/time_manager_back:latest
+        
         echo "Building and pushing frontend image..."
         cd ../time_manager_app
-        docker build -t Baptill/time_manager_app:latest .
-        docker push Baptill/time_manager:latest
+        docker build -t baptill/time_manager_front:latest .
+        docker push baptill/time_manager_front:latest
 
     - name: Deploy to EC2
       env:
@@ -47,8 +48,8 @@ jobs:
         ssh -tt -o StrictHostKeyChecking=no -o ServerAliveInterval=60 -i private_key.pem $USER@$HOST <<-EOF
           # Pull the latest images
           echo "Pulling Docker images..."
-          docker pull Baptill/time_manager:latest
-          docker pull Baptill/time_manager_app:latest
+          docker pull baptill/time_manager_back:latest
+          docker pull baptill/time_manager_front:latest
 
           # Clone repo
           echo "Downloading and extracting code..."
