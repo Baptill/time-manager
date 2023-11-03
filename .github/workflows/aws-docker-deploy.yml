@@ -12,7 +12,10 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-
+      
+    - name: Clean Docker System
+      run: docker system prune -af
+      
     - name: Deploy to EC2
       env:
         PRIVATE_KEY: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
