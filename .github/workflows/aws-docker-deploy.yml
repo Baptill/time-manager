@@ -45,7 +45,7 @@ jobs:
         chmod 600 private_key.pem
 
         echo "SSH into EC2 and deploying..."
-        ssh -tt -o StrictHostKeyChecking=no -o ServerAliveInterval=60 -i private_key.pem $USER@$HOST <<-EOF
+        ssh -tt -o StrictHostKeyChecking=no -i private_key.pem $USER@$HOST <<-EOF
           # Pull the latest images
           echo "Pulling Docker images..."
           docker pull baptill/time_manager_back:latest
