@@ -41,7 +41,7 @@ jobs:
         PGDATABASE: ${{ secrets.POSTGRES_DATABASE }}
       run: |
         echo "Saving private key to file..."
-        echo $PRIVATE_KEY" > private_key.pem
+        echo "$PRIVATE_KEY" > private_key.pem
         chmod 600 private_key.pem
 
         echo "SSH into EC2 and deploying..."
